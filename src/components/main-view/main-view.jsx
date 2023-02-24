@@ -8,7 +8,7 @@ export const MainView = () => {
         fetch("https://wjy-movies-api.herokuapp.com/movies")
             .then((res) => res.json())
             .then((data) => {
-                const movieResults = data.movies.map((movie) => {
+                const movieResults = data.map((movie) => {
                     return {
                         title: movie.title,
                         description: movie.description,
