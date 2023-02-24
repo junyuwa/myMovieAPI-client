@@ -10,10 +10,12 @@ export const MainView = () => {
             .then((data) => {
                 const movieResults = data.map((movie) => {
                     return {
-                        title: movie.title,
-                        description: movie.description,
-                        genre: movie.genre.name,
-                        director: movie.director.name
+                        id: movie._id,
+                        image: movie.ImagePath,
+                        title: movie.Title,
+                        description: movie.Description,
+                        genre: movie.Genre.Name,
+                        director: movie.Director.Name
                     }
                 })
 
