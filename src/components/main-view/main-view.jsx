@@ -6,8 +6,25 @@ import { SignupView } from "../signup-view/signup-view";
 
 export const MainView = () => {
     const [movies, setMovies] = useState([]);
+
+    // check if a suer is logged in, if not return login view
+    const [user, setUser] = useState(null);
+    const [token, setToken] = useState(null);
+    if (!user) {
+        return <div>
+            <LoginView onLoggedIn={(user) => {
+                setUser(user);
+                setToken
+            }} />;
+            or
+            <SignupView />;
+        </div>
+    }
+
     useEffect(() => {
-        fetch("https://wjy-movies-api.herokuapp.com/movies")
+        if (!token) return;
+
+        fetch("https://wjy-movies-api.herokuapp.com/movies", { headers: { Authorization: `Bearer ${token}` } })
             .then((res) => res.json())
             .then((data) => {
                 const movieResults = data.map((movie) => {
@@ -23,7 +40,7 @@ export const MainView = () => {
 
                 setMovies(movieResults);
             })
-    }, []);
+    }, [token]);
 
     const [selectedMovie, setSelectedMovie] = useState(null)
 
@@ -37,12 +54,15 @@ export const MainView = () => {
 
     return (
         <div>
-            {movies.map((movie) => (
-                <MovieCard key={movie.title} movie={movie} onMovieClick={(newSelectedMovie) => {
-                    setSelectedMovie(newSelectedMovie);
-                }} />
-            )
-            )}
+            <div>
+                {movies.map((movie) => (
+                    <MovieCard key={movie.title} movie={movie} onMovieClick={(newSelectedMovie) => {
+                        setSelectedMovie(newSelectedMovie);
+                    }} />
+                )
+                )}
+            </div>
+            <button onClick={() => { setUser(null); setToken(null); localStorage.clear() }}>Logout</button>
         </div>
     );
 };
