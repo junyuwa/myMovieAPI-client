@@ -6,19 +6,20 @@ import { SignupView } from "../signup-view/signup-view";
 
 export const MainView = () => {
     const [movies, setMovies] = useState([]);
+    const [selectedMovie, setSelectedMovie] = useState(null);
 
     // check if a suer is logged in, if not return login view
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
+
     if (!user) {
-        return <div>
-            <LoginView onLoggedIn={(user) => {
-                setUser(user);
-                setToken
-            }} />;
-            or
-            <SignupView />;
-        </div>
+        return (
+            <>
+                <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
+
+                <SignupView />
+            </>
+        );
     }
 
     useEffect(() => {
@@ -42,7 +43,6 @@ export const MainView = () => {
             })
     }, [token]);
 
-    const [selectedMovie, setSelectedMovie] = useState(null)
 
     if (selectedMovie) {
         return <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />;
