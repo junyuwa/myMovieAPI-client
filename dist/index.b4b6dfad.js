@@ -28419,62 +28419,62 @@ const LoginView = ({ onLoggedIn  })=>{
         }).catch((e)=>{
             alert("Something went wrong");
         });
-        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
-            onSubmit: handleSubmit,
-            children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                    children: [
-                        "Username:",
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                            type: "text",
-                            value: username,
-                            onChange: (e)=>setUsername(e.target.value),
-                            required: true
-                        }, void 0, false, {
-                            fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 42,
-                            columnNumber: 25
-                        }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 40,
-                    columnNumber: 21
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                    children: [
-                        "Password:",
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                            type: "text",
-                            value: password,
-                            onChange: (e)=>setPassword(e.target.value),
-                            required: true
-                        }, void 0, false, {
-                            fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 51,
-                            columnNumber: 25
-                        }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 49,
-                    columnNumber: 21
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                    type: "submit",
-                    children: "Submit"
-                }, void 0, false, {
-                    fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 58,
-                    columnNumber: 21
-                }, undefined)
-            ]
-        }, void 0, true, {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 39,
-            columnNumber: 17
-        }, undefined);
     };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+        onSubmit: handleSubmit,
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Username:",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "text",
+                        value: username,
+                        onChange: (e)=>setUsername(e.target.value),
+                        required: true
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 43,
+                        columnNumber: 21
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 41,
+                columnNumber: 17
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Password:",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "text",
+                        value: password,
+                        onChange: (e)=>setPassword(e.target.value),
+                        required: true
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 52,
+                        columnNumber: 21
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 50,
+                columnNumber: 17
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                type: "submit",
+                children: "Submit"
+            }, void 0, false, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 59,
+                columnNumber: 17
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/login-view/login-view.jsx",
+        lineNumber: 40,
+        columnNumber: 13
+    }, undefined);
 };
 _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
 _c = LoginView;
@@ -28631,6 +28631,6 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}]},["1xC6H","7a1Sg","d8Dch"], "d8Dch", "parcelRequired7f6")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["1xC6H","7a1Sg","d8Dch"], "d8Dch", "parcelRequired7f6")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
