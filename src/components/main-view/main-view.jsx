@@ -11,8 +11,10 @@ export const MainView = () => {
     const [selectedMovie, setSelectedMovie] = useState(null);
 
     // check if a suer is logged in, if not return login view
-    const [user, setUser] = useState(null);
-    const [token, setToken] = useState(null);
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
+    const [user, setUser] = useState(storedUser ? storedUser : null);
+    const [token, setToken] = useState(storedToken ? storedToken : null);
 
 
     useEffect(() => {
