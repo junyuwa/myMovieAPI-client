@@ -11,7 +11,6 @@ import { ProfielView } from "../profile-view/profile-view";
 
 export const MainView = () => {
     const [movies, setMovies] = useState([]);
-    // for retrieving all existing users
     const [users, setUsers] = useState([]);
 
     // check if a suer is logged in, if not return login view
@@ -42,29 +41,18 @@ export const MainView = () => {
                 })
 
                 setMovies(movieResults);
-            });
-
-        fetch("https://wjy-movies-api.herokuapp.com/users", { headers: { Authorization: `Bearer ${token}` } })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                const userResults = data.map((user) => {
-                    return {
-                        id: user._id,
-                        username: user.Username,
-                        email: user.Email,
-                        birthday: user.Birthday,
-                        favmovies: user.Favmovies
-                    }
-                })
-
-                setUsers(userResults);
-            });
+            })
     }, [token]);
 
+    const logOut = () => {
+        setUser(null);
+        setToken(null);
+        localStorage.clear();
+    }
 
     return (
         <BrowserRouter>
+            <NavBar user={user} onLoggedOut={logOut} />
             <Row className="justify-content-md-center">
                 <Routes>
                     <Route
@@ -114,16 +102,14 @@ export const MainView = () => {
                         }
                     />
                     <Route
-                        path="/users/:userId"
+                        path="/profile"
                         element={
                             <>
                                 {!user ? (
                                     <Navigate to="/login" replace />
-                                ) : users.length === 0 ? (
-                                    <Col>There are no users now</Col>
                                 ) : (
                                     <Col md={8}>
-                                        <ProfielView profileUser={storedUser} />
+                                        <ProfielView user={user} movies={movies} />
                                     </Col>
                                 )
                                 }
@@ -141,8 +127,8 @@ export const MainView = () => {
                                 ) : (
                                     <>
                                         {movies.map((movie) => (
-                                            <Col className="mb-4" key={movie.id} md={3}>
-                                                <MovieCard movie={movie} />
+                                            <Col className="mb-4 mt-4 mx-2" key={movie.id} md={3}>
+                                                <MovieCard movie={movie} user={user} />
                                             </Col>
                                         ))}
                                     </>

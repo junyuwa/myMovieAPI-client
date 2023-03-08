@@ -42,7 +42,7 @@ export const LoginView =
             <Container>
                 <Row>
                     <Col>
-                        <CardGroup>
+                        <CardGroup className="mt-4">
                             <Card>
                                 <Card.Body>
                                     <Card.Title>Login</Card.Title>
@@ -65,9 +65,10 @@ export const LoginView =
                                                 value={password}
                                                 onChange={(e) => setPassword(e.target.value)}
                                                 required
+                                                minLength="8"
                                             />
                                         </Form.Group>
-                                        <Button variant="primary" type="submit" className="mb-2">
+                                        <Button variant="primary" type="submit" className="mb-2 mt-4">
                                             Submit
                                         </Button>
                                     </Form>
