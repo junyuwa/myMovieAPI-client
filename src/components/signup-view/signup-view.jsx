@@ -90,7 +90,7 @@ export const SignupView = () => {
                                         </Form.Label>
                                     </Form.Group>
                                     <Button variant="primary" type="submit" className="mb-2">
-                                        Submit
+                                        Sign up
                                     </Button>
                                 </Form>
                             </Card.Body>

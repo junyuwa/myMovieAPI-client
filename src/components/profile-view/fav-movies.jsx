@@ -1,6 +1,8 @@
 import { MovieCard } from "../movie-card/movie-card"
 
 export const FavMovies = (favMovieList) => {
+    console.log("bitch here", favMovieList);
+
     return (
         <>
             <h2>My Favorite Movies</h2>

@@ -7,11 +7,10 @@ import { NavBar } from "../nav-bar/nav-bar";
 import Row from "react-bootstrap/Row";
 import Col from 'react-bootstrap/Col';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { ProfielView } from "../profile-view/profile-view";
+import { ProfileView } from "../profile-view/profile-view";
 
 export const MainView = () => {
     const [movies, setMovies] = useState([]);
-    const [users, setUsers] = useState([]);
 
     // check if a suer is logged in, if not return login view
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -109,10 +108,9 @@ export const MainView = () => {
                                     <Navigate to="/login" replace />
                                 ) : (
                                     <Col md={8}>
-                                        <ProfielView user={user} movies={movies} />
+                                        <ProfileView movies={movies} />
                                     </Col>
-                                )
-                                }
+                                )}
                             </>
                         }
                     />

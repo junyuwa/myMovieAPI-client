@@ -69,7 +69,7 @@ export const LoginView =
                                             />
                                         </Form.Group>
                                         <Button variant="primary" type="submit" className="mb-2 mt-4">
-                                            Submit
+                                            Login
                                         </Button>
                                     </Form>
                                 </Card.Body>

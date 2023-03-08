@@ -6,7 +6,6 @@ import './movie-card.scss';
 
 export const MovieCard = ({ movie, user }) => {
     // console.log("card movie here", `${movie.id}`)
-    const isFav = user.Favmovies.find((m) => m.id == movie.id)
 
     // console.log("in movie card:", movie, user)
     const [userFavMovies, setUserFavMovies] = useState([]);
@@ -20,15 +19,15 @@ export const MovieCard = ({ movie, user }) => {
                 "Content-Type": "application/json",
             }
         })
-            .then((res) => { res.json() })
-            .then((data) => {
-                console.log(data);
-                const favMovies = data.Favmovies
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.Favmovies)
+                setUserFavMovies(data.Favmovies);
+                alert(`Added ${movie.title} to favorites`);
             })
+            .catch(err => console.error(err));
+    };
 
-        setUserFavMovies(favMovies);
-        console.log(userFavMovies);
-    }
 
     const removeFavorite = () => {
         fetch(`https://wjy-movies-api.herokuapp.com/users/${user.Username}/${movie.id}`, {
@@ -37,12 +36,19 @@ export const MovieCard = ({ movie, user }) => {
                 Authorization: `Bearer ${storedToken}`,
                 "Content-Type": "application/json",
             }
-        }).then(res => {
-            const updatedFavUser = res.json();
-            setUserFavMovies(updatedFavUser.Favmovies);
-            console.log(userFavMovies);
         })
-    }
+            .then(res => res.json())
+            .then(data => {
+                setUserFavMovies(data.Favmovies);
+                alert(`Removed ${movie.title} from favorites`);
+            })
+            .catch(err => console.error(err));
+    };
+
+    const isFav = user.Favmovies.find(
+        (mid) => mid === movie.id
+    );
+    console.log(user.Favmovies);
 
     return (
         <Card className="h-100">
@@ -57,11 +63,11 @@ export const MovieCard = ({ movie, user }) => {
                 </Link>
                 <>
                     {isFav ? (
-                        <Button variant="warning" className='mx-2' onClick={removeFavorite()}>
+                        <Button variant="warning" className='mx-2' onClick={removeFavorite}>
                             Remove from Favorite
                         </Button>
                     ) : (
-                        <Button variant="warning" className='mx-2' onClick={addFavorite()}>
+                        <Button variant="warning" className='mx-2' onClick={addFavorite}>
                             Add to Favorite
                         </Button>
                     )}

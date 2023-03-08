@@ -5,24 +5,27 @@ import { Button, Container, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export const ProfielView = ({ user, movies }) => {
-    // console.log(user);
-    // console.log(user.Username);
+export const ProfileView = ({ movies }) => {
+    console.log("profile view movies", movies)
 
     const storedToken = localStorage.getItem("token");
-    const [token] = useState(storedToken ? storedToken : null);
+    const storedUser = JSON.parse(localStorage.getItem('user'));
 
-    // const favMovieList = movies.filter(m => user.Favmovies.includes(m._id))
+    const favMovieList = movies.filter(m => storedUser.Favmovies.includes(m._id))
+
 
     return (
         <Container>
             <Row className='justify-content-md-center mt-4' >
                 <Col>
-                    <UserInfo name={user.Username} email={user.Email} birthday={user.Birthday} />
+                    <UserInfo name={storedUser.Username} email={storedUser.Email} birthday={storedUser.Birthday} />
                 </Col>
                 <Col>
-                    <UpdateUser user={user} />
+                    <UpdateUser user={storedUser} />
                 </Col>
+            </Row>
+            <Row>
+                <FavMovies favMovieList={favMovieList} />
             </Row>
             <Link to={`/`}>
                 <Button variant="primary" className="back-button mt-2">Back</Button>
