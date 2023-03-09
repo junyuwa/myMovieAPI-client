@@ -2,12 +2,13 @@
 export const UserInfo = ({ name, email, birthday }) => {
     return (
         <>
+            <h4>Your Info</h4>
             <div>
-                <span>Username:</span>
+                <span>Name:</span>
                 <span>{name}</span>
             </div>
             <div>
-                <span>Email: </span>
+                <span>E-mail: </span>
                 <span>{email}</span>
             </div>
             <div>

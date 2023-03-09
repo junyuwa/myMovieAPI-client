@@ -4,15 +4,14 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import './movie-card.scss';
 
-export const MovieCard = ({ movie, user }) => {
+export const MovieCard = ({ movie, onFavChange }) => {
     // console.log("card movie here", `${movie.id}`)
 
-    // console.log("in movie card:", movie, user)
-    const [userFavMovies, setUserFavMovies] = useState([]);
     const storedToken = localStorage.getItem("token");
+    const storedUser = JSON.parse(localStorage.getItem('user'));
 
     const addFavorite = () => {
-        fetch(`https://wjy-movies-api.herokuapp.com/users/${user.Username}/movies/${movie.id}`, {
+        fetch(`https://wjy-movies-api.herokuapp.com/users/${storedUser.Username}/movies/${movie.id}`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${storedToken}`,
@@ -21,16 +20,17 @@ export const MovieCard = ({ movie, user }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data.Favmovies)
-                setUserFavMovies(data.Favmovies);
+                // console.log(data.Favmovies)
+                onFavChange(data);
                 alert(`Added ${movie.title} to favorites`);
+                window.location.reload();
             })
             .catch(err => console.error(err));
     };
 
 
     const removeFavorite = () => {
-        fetch(`https://wjy-movies-api.herokuapp.com/users/${user.Username}/${movie.id}`, {
+        fetch(`https://wjy-movies-api.herokuapp.com/users/${storedUser.Username}/${movie.id}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${storedToken}`,
@@ -39,21 +39,22 @@ export const MovieCard = ({ movie, user }) => {
         })
             .then(res => res.json())
             .then(data => {
-                setUserFavMovies(data.Favmovies);
+                onFavChange(data);
                 alert(`Removed ${movie.title} from favorites`);
+                window.location.reload();
             })
             .catch(err => console.error(err));
     };
 
-    const isFav = user.Favmovies.find(
+    const isFav = storedUser.Favmovies.find(
         (mid) => mid === movie.id
     );
-    console.log(user.Favmovies);
+
 
     return (
         <Card className="h-100">
             <Card.Img variant="top" src={movie.image} />
-            <Card.Body>
+            <Card.Body className="d-flex flex-column">
                 <Card.Title>{movie.title}</Card.Title>
                 <Card.Text>{movie.description}</Card.Text>
                 <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
@@ -63,11 +64,11 @@ export const MovieCard = ({ movie, user }) => {
                 </Link>
                 <>
                     {isFav ? (
-                        <Button variant="warning" className='mx-2' onClick={removeFavorite}>
+                        <Button variant="warning" className='my-2' onClick={removeFavorite}>
                             Remove from Favorite
                         </Button>
                     ) : (
-                        <Button variant="warning" className='mx-2' onClick={addFavorite}>
+                        <Button variant="warning" className='my-2' onClick={addFavorite}>
                             Add to Favorite
                         </Button>
                     )}

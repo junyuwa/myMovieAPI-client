@@ -2,7 +2,7 @@ import { Button, Form, CardGroup, Card, Container, Col, Row } from "react-bootst
 import { useState } from "react";
 
 export const UpdateUser = (user) => {
-    console.log("update user:", user.user.Username);
+    // console.log("update user:", user.user.Username);
 
 
     const storedToken = localStorage.getItem("token");

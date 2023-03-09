@@ -48,6 +48,12 @@ export const MainView = () => {
         setToken(null);
         localStorage.clear();
     }
+    const onFavChange = (u) => {
+        setUser(u);
+        localStorage.setItem("user", JSON.stringify(u))
+    }
+
+    console.log('onFavChange main:', onFavChange);
 
     return (
         <BrowserRouter>
@@ -108,7 +114,7 @@ export const MainView = () => {
                                     <Navigate to="/login" replace />
                                 ) : (
                                     <Col md={8}>
-                                        <ProfileView movies={movies} />
+                                        <ProfileView movies={movies} onFavChange={onFavChange} />
                                     </Col>
                                 )}
                             </>
@@ -126,7 +132,7 @@ export const MainView = () => {
                                     <>
                                         {movies.map((movie) => (
                                             <Col className="mb-4 mt-4 mx-2" key={movie.id} md={3}>
-                                                <MovieCard movie={movie} user={user} />
+                                                <MovieCard movie={movie} onFavChange={onFavChange} />
                                             </Col>
                                         ))}
                                     </>
