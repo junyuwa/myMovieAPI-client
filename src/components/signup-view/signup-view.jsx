@@ -28,7 +28,7 @@ export const SignupView = () => {
                 alert("Signup successful");
                 window.location.reload();
             } else {
-                alert("Signup filed")
+                alert("Signup failed")
             }
         })
 
@@ -38,7 +38,7 @@ export const SignupView = () => {
         <Container>
             <Row>
                 <Col>
-                    <CardGroup>
+                    <CardGroup className="mt-4">
                         <Card>
                             <Card.Body>
                                 <Card.Title>Sign up</Card.Title>
@@ -61,6 +61,7 @@ export const SignupView = () => {
                                                 value={password}
                                                 onChange={(e) => setPassword(e.target.value)}
                                                 required
+                                                minLength="8"
                                             />
                                         </Form.Label>
                                     </Form.Group>
@@ -89,7 +90,7 @@ export const SignupView = () => {
                                         </Form.Label>
                                     </Form.Group>
                                     <Button variant="primary" type="submit" className="mb-2">
-                                        Submit
+                                        Sign up
                                     </Button>
                                 </Form>
                             </Card.Body>
