@@ -4,7 +4,7 @@ My Movie Base is a web application constructed with React that allows users to s
 
 ## Installation
 
-download "dist" directory, open terminal, and run command "npx parcel src/index.html"
+download directory, open terminal, and run command "npx parcel src/index.html"
 
 ## Live demo
 
