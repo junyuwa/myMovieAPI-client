@@ -20,6 +20,9 @@ export const MainView = () => {
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
 
+    const [searchList, setSearchList] = useState('movies');
+    const [isFiltered, setIsFiltered] = useState(false);
+
 
     useEffect(() => {
         if (!token) return;
@@ -27,7 +30,7 @@ export const MainView = () => {
         fetch("https://wjy-movies-api.herokuapp.com/movies", { headers: { Authorization: `Bearer ${token}` } })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 const movieResults = data.map((movie) => {
                     return {
                         id: movie._id,
@@ -43,6 +46,18 @@ export const MainView = () => {
             })
     }, [token]);
 
+    const onSearch = (keyword) => {
+        let key = keyword.toLowerCase();
+        const filtered = movies.filter(item => item.title.toLowerCase().includes(key));
+        console.log(filtered);
+        setSearchList(filtered);
+        setIsFiltered(true);
+    }
+
+    useEffect(() => {
+        setSearchList(movies);
+    }, [movies, user])
+
     const logOut = () => {
         setUser(null);
         setToken(null);
@@ -52,12 +67,15 @@ export const MainView = () => {
         setUser(u);
         localStorage.setItem("user", JSON.stringify(u))
     }
+    const handleReset = () => {
+        setFilteredList(movies);
+        setIsFiltered(false);
+    };
 
-    console.log('onFavChange main:', onFavChange);
 
     return (
         <BrowserRouter>
-            <NavBar user={user} onLoggedOut={logOut} />
+            <NavBar user={user} onLoggedOut={logOut} onSearch={onSearch} handleReset={handleReset} />
             <Row className="justify-content-md-center">
                 <Routes>
                     <Route
@@ -130,13 +148,14 @@ export const MainView = () => {
                                     <Col>The list is empty!</Col>
                                 ) : (
                                     <>
-                                        {movies.map((movie) => (
+                                        {searchList.map((movie) => (
                                             <Col className="mb-4 mt-4 mx-2" key={movie.id} md={3}>
                                                 <MovieCard movie={movie} onFavChange={onFavChange} />
                                             </Col>
                                         ))}
                                     </>
-                                )}
+                                )
+                                }
                             </>
                         }
                     />

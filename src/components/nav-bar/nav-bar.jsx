@@ -1,7 +1,16 @@
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, Form, Button } from "react-bootstrap";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const NavBar = ({ user, onLoggedOut }) => {
+export const NavBar = ({ user, onLoggedOut, onSearch, handleReset }) => {
+    const [searchKeyword, setSearchKyeword] = useState('');
+
+    const handleSearch = (event) => {
+        event.preventDefault();
+        console.log(searchKeyword);
+        onSearch(searchKeyword);
+    }
+
     return (
         <Navbar bg="primary" variant="dark" expand="lg" >
             <Container>
@@ -23,7 +32,7 @@ export const NavBar = ({ user, onLoggedOut }) => {
                         )}
                         {user && (
                             <>
-                                <Nav.Link as={Link} to="/">
+                                <Nav.Link as={Link} to="/" onClick={handleReset}>
                                     Home
                                 </Nav.Link>
                                 <Nav.Link as={Link} to="/profile">
@@ -33,8 +42,18 @@ export const NavBar = ({ user, onLoggedOut }) => {
                             </>
                         )}
                     </Nav>
+                    <Form className="d-flex" onSubmit={handleSearch}>
+                        <Form.Control
+                            type="search"
+                            placeholder="Search"
+                            className="me-2"
+                            aria-label="Search"
+                            onChange={(e) => setSearchKyeword(e.target.value)}
+                        />
+                        <Button variant="light" type="submit">Search</Button>
+                    </Form>
                 </Navbar.Collapse>
             </Container>
-        </Navbar>
+        </Navbar >
     );
 };
