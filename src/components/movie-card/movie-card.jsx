@@ -23,7 +23,6 @@ export const MovieCard = ({ movie, onFavChange }) => {
                 // console.log(data.Favmovies)
                 onFavChange(data);
                 alert(`Added ${movie.title} to favorites`);
-                window.location.reload();
             })
             .catch(err => console.error(err));
     };
@@ -41,7 +40,6 @@ export const MovieCard = ({ movie, onFavChange }) => {
             .then(data => {
                 onFavChange(data);
                 alert(`Removed ${movie.title} from favorites`);
-                window.location.reload();
             })
             .catch(err => console.error(err));
     };
@@ -80,14 +78,10 @@ export const MovieCard = ({ movie, onFavChange }) => {
 
 MovieCard.propTypes = {
     movie: PropTypes.shape({
-        ImagePath: PropTypes.string.isRequired,
-        Title: PropTypes.string.isRequired,
-        Description: PropTypes.string.isRequired,
-        Genre: PropTypes.shape({
-            Name: PropTypes.string.isRequired,
-        }),
-        Director: PropTypes.shape({
-            Name: PropTypes.string.isRequired,
-        }),
+        image: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        director: PropTypes.string.isRequired,
     }).isRequired,
 };
